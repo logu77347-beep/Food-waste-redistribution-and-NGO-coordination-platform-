@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Annam – Food Waste Redistribution & NGO Coordination Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F5EE;--card:#FFFFFF;--ink:#13261C;--mute:#5A6B60;--line:#D6DFD3;--leaf:#1F7A4D;--leaf-d:#155A39;--sun:#F2B01E;--chili:#C8372D;--sky:#2B6CB0;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A14;--card:#17261D;--ink:#E8F0E6;--mute:#9DB0A3;--line:#2B4034;--leaf:#4CC38A;--leaf-d:#7FDDAE;--sun:#F2B01E;--chili:#FF7468;--sky:#7DB5F0}}
+:root[data-theme="dark"]{--bg:#0F1A14;--card:#17261D;--ink:#E8F0E6;--mute:#9DB0A3;--line:#2B4034;--leaf:#4CC38A;--leaf-d:#7FDDAE;--sun:#F2B01E;--chili:#FF7468;--sky:#7DB5F0}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.08;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.brand{font:800 24px 'Bricolage Grotesque';text-decoration:none;display:flex;gap:8px;align-items:center}
+.brand i{width:14px;height:14px;border-radius:50%;background:var(--sun);display:inline-block;box-shadow:0 0 0 4px var(--leaf)}
+nav a.l{margin-left:20px;text-decoration:none;font-weight:500;color:var(--mute)}nav a.l:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
+.hero h1{font-size:clamp(36px,5.6vw,66px);font-weight:800;letter-spacing:-.02em}
+.hero p{max-width:50ch;color:var(--mute);font-size:18px;margin:18px 0 26px}
+.btn{font:600 15px Figtree;border:0;border-radius:10px;padding:11px 18px;background:var(--leaf);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--leaf-d)}.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.sm{padding:7px 12px;font-size:14px}.btn.sun{background:var(--sun);color:#13261C}
+.pipe{background:var(--ink);color:var(--bg);border-radius:22px;padding:22px}
+.pipe h3{font-size:15px;font-weight:500;opacity:.75;margin-bottom:14px;font-family:Figtree}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.st{background:rgba(255,255,255,.09);border-radius:12px;padding:12px 8px;text-align:center}
+.st b{display:block;font:800 34px 'Bricolage Grotesque'}.st span{font-size:12px;opacity:.8}
+.st:nth-child(1) b{color:var(--sun)}.st:nth-child(2) b{color:#8FD6B0}.st:nth-child(3) b{color:#9CC8F5}.st:nth-child(4) b{color:#fff}
+.pipe small{display:block;margin-top:12px;opacity:.65}
+section{padding:48px 0}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.sub{color:var(--mute);margin:0 0 24px;max-width:60ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.console{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+input,select{width:100%;font:inherit;padding:10px 12px;border-radius:9px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tabs{display:flex;gap:6px;margin-bottom:6px}
+.tabs button{flex:1;padding:9px;border-radius:9px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 14px Figtree;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.who{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.tag{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--line)}
+.tok{font:12px/1.4 ui-monospace,Menlo,monospace;word-break:break-all;color:var(--mute);background:var(--bg);padding:8px;border-radius:8px;margin:8px 0}
+.item{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;background:var(--bg)}
+.item h4{margin:0;font:700 17px 'Bricolage Grotesque'}.item p{margin:4px 0 10px;color:var(--mute);font-size:14px}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.s{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.s.POSTED{background:#FCE9B4;color:#6B4A00}.s.ACCEPTED{background:#CDEBDB;color:#0E4B2C}.s.IN_TRANSIT{background:#CFE2F7;color:#17487C}.s.DELIVERED{background:#13261C;color:#fff}.s.EXPIRED{background:#F6D0CC;color:#7C1D15}
+.cd{font-variant-numeric:tabular-nums;font-weight:600}.cd.late{color:var(--chili)}
+.msg{margin-top:10px;padding:10px 12px;border-radius:9px;font-size:14px;display:none}.msg.ok{display:block;background:#CDEBDB;color:#0E4B2C}.msg.err{display:block;background:#F6D0CC;color:#7C1D15}
+.match{font-size:13px;color:var(--leaf-d);margin-top:6px;font-weight:600}
+.empty{color:var(--mute);padding:18px 4px;font-size:15px}
+svg.map{width:100%;height:auto;border-radius:14px;background:var(--bg);border:1px solid var(--line);margin-top:16px}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin-top:8px}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.mods .panel{padding:18px}.mods h3{font-size:18px;margin:6px 0}.mods p{margin:0;color:var(--mute);font-size:14px}
+.mods .n{font:800 14px 'Bricolage Grotesque';color:var(--leaf)}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.stack ul{margin:8px 0 0;padding-left:18px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--mute);font-size:14px}
+footer b{color:var(--ink)}
+@media(max-width:820px){.hero,.console{grid-template-columns:1fr}.stages{grid-template-columns:repeat(2,1fr)}nav a.l{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="brand" href="#"><i></i>Annam</a><div><a class="l" href="#app">Try the platform</a><a class="l" href="#modules">How it works</a><a class="l" href="#stack">Tech stack</a></div></nav>
+
+<header class="hero">
+ <div>
+  <h1>No safe surplus food should be wasted when it can help someone.</h1>
+  <p>Annam connects donors with nearby NGOs and volunteers, locks each donation to one claimant, and closes every delivery with a verified receipt.</p>
+  <a class="btn" href="#app">Post or claim food</a> <a class="btn alt" href="#modules">See the five modules</a>
+ </div>
+ <div class="pipe" aria-live="polite">
+  <h3>Live donation pipeline</h3>
+  <div class="stages">
+   <div class="st"><b id="c-POSTED">0</b><span>Posted</span></div>
+   <div class="st"><b id="c-ACCEPTED">0</b><span>Accepted</span></div>
+   <div class="st"><b id="c-IN_TRANSIT">0</b><span>In transit</span></div>
+   <div class="st"><b id="c-DELIVERED">0</b><span>Delivered</span></div>
+  </div>
+  <small id="expNote">Connecting to the server…</small>
+ </div>
+</header>
+
+<section id="app">
+ <h2>Try the platform</h2>
+ <p class="sub">Create an account as a donor, NGO or volunteer. Open a second role in turn to follow a donation from posting to delivery.</p>
+ <div class="console">
+  <div>
+   <div class="panel" id="authPanel">
+    <div class="tabs" role="group" aria-label="Account action"><button id="tabReg" aria-pressed="true">Register</button><button id="tabLog" aria-pressed="false">Log in</button></div>
+    <label for="email">Email</label><input id="email" type="email" value="demo@srmist.edu.in" autocomplete="email">
+    <label for="pwd">Password</label><input id="pwd" type="password" value="demo123" autocomplete="current-password">
+    <div id="roleBox"><label for="role">I am a</label>
+     <select id="role"><option>Donor</option><option>NGO</option><option>Volunteer</option></select></div>
+    <div id="ngoBox" style="display:none"><label for="ngoSel">My organisation</label><select id="ngoSel"></select></div>
+    <p style="margin:14px 0 0"><button class="btn" id="authBtn">Create account</button></p>
+    <div class="msg" id="authMsg" role="status"></div>
+   </div>
+   <div class="panel" id="actPanel" style="display:none;margin-top:20px"></div>
+  </div>
+  <div class="panel">
+   <h3 style="font-size:20px">Donations near you</h3>
+   <div id="list"></div>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:20px">
+  <h3 style="font-size:20px">Coverage map</h3>
+  <svg class="map" id="map" viewBox="0 0 600 300" role="img" aria-label="Map of NGOs and donations"></svg>
+  <div class="leg"><span>■ NGO</span><span style="color:#B07F00">● Posted</span><span style="color:var(--leaf)">● Accepted</span><span style="color:var(--sky)">● In transit</span><span>○ Delivered</span></div>
+ </div>
+</section>
+
+<section id="modules">
+ <h2>Five modules, one pipeline</h2>
+ <p class="sub">Each step of a donation maps to one module in the backend design.</p>
+ <div class="mods">
+  <div class="panel"><span class="n">Module 1</span><h3>Accounts &amp; roles</h3><p>Registration, token-based login and role checks for donors, NGOs and volunteers. NGO KYC checks plug in here.</p></div>
+  <div class="panel"><span class="n">Module 2</span><h3>Donation listing</h3><p>Food type, quantity, coordinates and shelf life. Anything past its safety window is marked expired.</p></div>
+  <div class="panel"><span class="n">Module 3</span><h3>Geo matching</h3><p>Haversine distance picks NGOs within 10&nbsp;km and sorts the nearest first.</p></div>
+  <div class="panel"><span class="n">Module 4</span><h3>Reservation lock</h3><p>The first NGO to claim wins. Everyone else sees that it is already taken.</p></div>
+  <div class="panel"><span class="n">Module 5</span><h3>Dispatch &amp; proof</h3><p>A volunteer picks up, delivers, and closes the donation with a verification PIN.</p></div>
+ </div>
+</section>
+
+<section id="stack">
+ <h2>Production tech stack</h2>
+ <p class="sub">The backend in this repo is Flask, SQLite and PyJWT. Swap SQLite for PostgreSQL + PostGIS when you scale.</p>
+ <div class="stack">
+  <div class="panel"><h3>Frontend</h3><ul><li>React web app</li><li>Flutter mobile client</li><li>Tailwind CSS</li><li>Redux state</li></ul></div>
+  <div class="panel"><h3>Backend</h3><ul><li>Node.js / Express</li><li>Python Flask service</li><li>PyJWT security</li><li>Thread lock controls</li></ul></div>
+  <div class="panel"><h3>Data &amp; services</h3><ul><li>PostgreSQL + PostGIS</li><li>Firebase notifications</li><li>Google Maps Matrix API</li></ul></div>
+ </div>
+</section>
+</div>
+<footer><div class="wrap"><b>Food Waste Redistribution &amp; NGO Coordination Platform</b><br>Advanced Programming &amp; Practice (21CSC203P), SRM Institute of Science and Technology<br>Loganandhan R, Sudharsan K, Boomesh V</div></footer>
+
+
+<script>
+const $=id=>document.getElementById(id), API='/api';
+let NGOS=[], ITEMS=[], MAXR=10, me=null, tok=null, mode='reg', skew=0, msgT, busy=false;
+try{tok=sessionStorage.getItem('annam_tok')}catch(e){}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const now=()=>Date.now()+skew;
+function saveTok(){try{tok?sessionStorage.setItem('annam_tok',tok):sessionStorage.removeItem('annam_tok')}catch(e){}}
+async function api(path,opt={}){
+ const h={'Content-Type':'application/json'};if(tok)h.Authorization='Bearer '+tok;
+ let r;try{r=await fetch(API+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined})}
+ catch(e){throw new Error('Cannot reach the server. Start the backend with: python app.py')}
+ let j={};try{j=await r.json()}catch(e){}
+ if(!r.ok){if(r.status===401&&tok&&path!=='/auth/login'){logout()}throw new Error(j.error||'Request failed ('+r.status+')')}
+ return j}
+function say(el,t,ok){clearTimeout(msgT);el.className='msg '+(ok?'ok':'err');el.textContent=t}
+function fmt(ms){if(ms<=0)return'expired';const s=Math.floor(ms/1e3),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h}h ${m}m left`:`${m}m ${String(s%60).padStart(2,'0')}s left`}
+const ngoName=id=>(NGOS.find(n=>n.id===id)||{name:id}).name;
+// Module 1: auth
+$('role').onchange=()=>$('ngoBox').style.display=$('role').value==='NGO'?'block':'none';
+function setMode(m){mode=m;$('tabReg').setAttribute('aria-pressed',m==='reg');$('tabLog').setAttribute('aria-pressed',m==='log');$('roleBox').style.display=m==='reg'?'block':'none';$('ngoBox').style.display=m==='reg'&&$('role').value==='NGO'?'block':'none';$('authBtn').textContent=m==='reg'?'Create account':'Log in'}
+$('tabReg').onclick=()=>setMode('reg');$('tabLog').onclick=()=>setMode('log');
+$('authBtn').onclick=async()=>{const e=$('email').value.trim().toLowerCase(),p=$('pwd').value,m=$('authMsg');
+ if(!e||!p)return say(m,'Enter an email and password.',false);
+ try{const body={email:e,password:p};
+  if(mode==='reg'){body.role=$('role').value;body.ngo=$('ngoSel').value}
+  const j=await api(mode==='reg'?'/auth/register':'/auth/login',{method:'POST',body});
+  tok=j.token;me=j.user;saveTok();
+  say(m,(mode==='reg'?'Registered':'Logged in')+' as '+me.role+'.',true);drawAct();await refresh()}
+ catch(x){say(m,x.message,false)}};
+function logout(){me=null;tok=null;saveTok();$('actPanel').style.display='none';$('authPanel').style.display='block';refresh()}
+// Panels
+function drawAct(){const p=$('actPanel');p.style.display='block';$('authPanel').style.display='none';
+ let h=`<div class="who"><div><b>${esc(me.email)}</b> <span class="tag">${me.role}${me.role==='NGO'?' · '+esc(ngoName(me.ngo)):''}</span></div><button class="btn alt sm" id="out">Log out</button></div>
+ <div class="tok" title="Session token, valid 8 hours">${esc(tok)}</div>`;
+ if(me.role==='Donor')h+=`<label for="f1">Food type</label><input id="f1" value="Veg meals" maxlength="100"><div class="row"><div><label for="f2">Quantity (portions)</label><input id="f2" type="number" min="1" value="20"></div><div><label for="f3">Shelf life (hours)</label><input id="f3" type="number" min="0.1" step="0.5" value="4"></div></div>
+ <div class="row"><div><label for="f4">Latitude</label><input id="f4" type="number" step="any" value="13.0500"></div><div><label for="f5">Longitude</label><input id="f5" type="number" step="any" value="80.2500"></div></div>
+ <p style="margin:14px 0 0;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="go">Post donation</button><button class="btn alt" id="geo">Use my location</button></p>`;
+ else if(me.role==='NGO')h+=`<p class="sub" style="margin:0">Donations within ${MAXR} km of your location appear on the right. Claim one to lock it for your team.</p>`;
+ else h+=`<p class="sub" style="margin:0">Accepted donations appear on the right. Take a pickup, then close it with the NGO's PIN. Demo PIN: <b>NGO_CONFIRM_2026</b></p>`;
+ h+='<div class="msg" id="actMsg" role="status"></div>';p.innerHTML=h;$('out').onclick=logout;
+ if(me.role==='Donor'){$('go').onclick=async()=>{const q=+$('f2').value,hrs=+$('f3').value,la=+$('f4').value,lo=+$('f5').value,t=$('f1').value.trim();
+   if(!t||!(q>0)||!(hrs>0)||isNaN(la)||isNaN(lo))return say($('actMsg'),'Fill every field with valid values.',false);
+   try{const j=await api('/donations',{method:'POST',body:{type:t,qty:q,shelf_life_hours:hrs,lat:la,lon:lo}}),n=j.donation.near;
+    say($('actMsg'),n.length?`Posted. ${n.length} NGO${n.length>1?'s':''} within ${MAXR} km: ${n.map(x=>x.name+' ('+x.km.toFixed(1)+' km)').join(', ')}.`:'Posted, but no NGO is within '+MAXR+' km yet.',true);await refresh()}
+   catch(x){say($('actMsg'),x.message,false)}};
+  $('geo').onclick=()=>navigator.geolocation?navigator.geolocation.getCurrentPosition(s=>{$('f4').value=s.coords.latitude.toFixed(4);$('f5').value=s.coords.longitude.toFixed(4)},()=>say($('actMsg'),'Location is blocked. Enter coordinates by hand.',false)):say($('actMsg'),'This browser has no location support.',false)}}
+// Module 4, 5 actions
+async function act(kind,id){const m=$('actMsg');if(busy)return;busy=true;
+ try{let j;
+  if(kind==='claim'){j=await api(`/donations/${id}/claim`,{method:'POST'});say(m,'Reservation locked. A volunteer can now collect it.',true)}
+  if(kind==='pick'){j=await api(`/donations/${id}/pickup`,{method:'POST'});say(m,'Pickup assigned to you.',true)}
+  if(kind==='done'){j=await api(`/donations/${id}/deliver`,{method:'POST',body:{pin:document.getElementById('pin'+id).value.trim()}});say(m,'Delivery confirmed. Receipt closed.',true)}
+ }catch(x){say(m,x.message,false)}finally{busy=false}await refresh()}
+// Data
+async function refresh(){
+ try{if(!NGOS.length){NGOS=(await api('/ngos')).ngos;$('ngoSel').innerHTML=NGOS.map(n=>`<option value="${esc(n.id)}">${esc(n.name)}</option>`).join('')}
+  if(tok&&!me){try{me=(await api('/me')).user;drawAct()}catch(e){}}
+  const [d,s]=await Promise.all([api('/donations'),api('/stats')]);
+  ITEMS=d.donations;MAXR=d.max_radius_km;skew=d.server_time-Date.now();drawList();stats(s.counts)}
+ catch(x){$('expNote').textContent=x.message}}
+function drawList(){const L=$('list');let note='';const items=ITEMS;
+ if(!me)note='Sign in to take action. Showing every donation.';
+ else if(!items.length)note=me.role==='Donor'?'You have not posted anything yet. Use the form to post your first donation.':me.role==='NGO'?'No donations within '+MAXR+' km right now.':'No accepted donations to collect yet. Ask an NGO user to claim one.';
+ L.innerHTML=(note?`<div class="empty">${esc(note)}</div>`:'')+items.map(d=>{
+  let btn='';
+  if(me&&me.role==='NGO'&&d.status==='POSTED')btn=`<button class="btn sm" data-a="claim" data-i="${d.id}">Claim donation</button>`;
+  if(me&&me.role==='Volunteer'&&d.status==='ACCEPTED')btn=`<button class="btn sm sun" data-a="pick" data-i="${d.id}">Take pickup</button>`;
+  if(me&&me.role==='Volunteer'&&d.status==='IN_TRANSIT'&&d.vol_me)btn=`<div class="row"><input id="pin${d.id}" placeholder="Verification PIN" aria-label="Verification PIN"><button class="btn sm" data-a="done" data-i="${d.id}">Confirm delivery</button></div>`;
+  return `<div class="item"><div class="top"><h4>${esc(d.type)} · ${d.qty} portions</h4><span class="s ${d.status}">${d.status.replace('_',' ')}</span></div>
+  <p>${esc(d.donor)}${d.ngo?' → '+esc(ngoName(d.ngo)):''}${['POSTED','ACCEPTED','IN_TRANSIT'].includes(d.status)?` · <span class="cd" data-e="${d.exp}"></span>`:''}</p>
+  ${d.near.length?`<div class="match">Nearest NGO: ${esc(d.near[0].name)}, ${d.near[0].km.toFixed(1)} km</div>`:''}${btn}</div>`}).join('');
+ L.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>act(b.dataset.a,+b.dataset.i));
+ tick();drawMap()}
+function tick(){document.querySelectorAll('.cd').forEach(e=>{const ms=+e.dataset.e-now();e.textContent=fmt(ms);e.classList.toggle('late',ms<30*60e3)})}
+function stats(c){for(const k of ['POSTED','ACCEPTED','IN_TRANSIT','DELIVERED'])$('c-'+k).textContent=c[k];
+ $('expNote').textContent=c.EXPIRED?`${c.EXPIRED} donation${c.EXPIRED>1?'s':''} passed the safety window and left the pipeline.`:'Live data from the Annam server.'}
+function drawMap(){const X=lo=>30+(lo-80.14)/(80.32-80.14)*540,Y=la=>270-(la-12.95)/(13.15-12.95)*240;
+ const col={POSTED:'#B07F00',ACCEPTED:'var(--leaf)',IN_TRANSIT:'var(--sky)'};
+ $('map').innerHTML=`<g stroke="var(--line)">${[0,1,2,3,4].map(i=>`<line x1="${30+i*135}" x2="${30+i*135}" y1="30" y2="270"/><line x1="30" x2="570" y1="${30+i*60}" y2="${30+i*60}"/>`).join('')}</g>`+
+ NGOS.map(n=>`<rect x="${X(n.lon)-6}" y="${Y(n.lat)-6}" width="12" height="12" fill="var(--ink)"/><text x="${X(n.lon)+10}" y="${Y(n.lat)+4}" font-size="12" fill="var(--mute)">${esc(n.name)}</text>`).join('')+
+ ITEMS.filter(d=>d.status!=='EXPIRED').map(d=>`<circle cx="${X(d.lon)}" cy="${Y(d.lat)}" r="7" fill="${d.status==='DELIVERED'?'none':col[d.status]}" stroke="${d.status==='DELIVERED'?'var(--ink)':'var(--card)'}" stroke-width="2"><title>${esc(d.type)}: ${d.status}</title></circle>`).join('')}
+setInterval(tick,1000);setInterval(()=>{if(!document.activeElement||!/INPUT/.test(document.activeElement.tagName))refresh()},15000);
+refresh();
+</script>
+</body>
+</html>
